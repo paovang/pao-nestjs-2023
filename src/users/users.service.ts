@@ -1,3 +1,5 @@
+import { LOGGER_SERVICE } from '@/infrastructure/adapters/logger/inject-key';
+import { ILogger } from '@/infrastructure/ports/logger/logger.interface';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from './../auth/auth.service';
 import { IMail } from './../infrastructure/ports/mail/mail.interface';
@@ -24,8 +26,8 @@ export class UsersService {
 
   constructor(
     private readonly _jwt: JwtService,
-    @Inject(MAIL_SERVICE)
-    private readonly _mailer: IMail<any>
+    @Inject(MAIL_SERVICE) private readonly _mailer: IMail<any>,
+    @Inject(LOGGER_SERVICE) private readonly _logger: ILogger,
   ) {
 
   }
@@ -36,6 +38,8 @@ export class UsersService {
 
 
   async forgotPassword(body): Promise<any> {
+    // this._logger.error(`[Server Error] Message: ${body.email} + ${body.subject}`);
+
     // const user = this.users.find(user => user.username === 'john');
 
     // if (!user) throw new NotFoundException();
@@ -48,6 +52,7 @@ export class UsersService {
 
     // const token = await this._jwt.sign(payload);
     // console.log(token); 
+
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTcwMTM0MTMzOCwiZXhwIjoxNzAxMzQxMzk4fQ.PSGa3uXcxSrS_9j8PH4xDrD1xDyCuqUkGmXpjmaWlPE';
 
     await this._mailer.sendMail({

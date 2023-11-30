@@ -1,3 +1,4 @@
+import { LoggerModule } from '@/infrastructure/adapters/logger/winston/logger.module';
 import { MailModule } from '@/infrastructure/adapters/mail/mail.module';
 import { QueueModule } from '@/infrastructure/adapters/queue/bull/queue.module';
 import { I18nModule } from '@/infrastructure/adapters/localization/i18n.module';
@@ -24,6 +25,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    LoggerModule.forRootAsync(),
     I18nModule,
     ScheduleModule.forRoot(),
     TypeOrmRepositoryModule,

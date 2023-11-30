@@ -70,7 +70,9 @@
     "socket.io": "^4.7.2",
     "twilio": "^4.19.0",
     "typeorm": "^0.3.17",
-    "typeorm-extension": "^3.2.0"
+    "typeorm-extension": "^3.2.0",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.2.1",
