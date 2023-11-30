@@ -1,0 +1,4 @@
+{
+    "IS_NUMBER": "{property} must be number.",
+    "IS_NOT_EMPTY": "{property} is not empty."
+}
