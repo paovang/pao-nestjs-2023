@@ -25,4 +25,4 @@ export class PubNubSubScribeBcelOneCommand extends CommandRunner {
   }
 }
 
-// npm run command-nest subscribe-bcel-one
+// pnpm run command-nest subscribe-bcel-one

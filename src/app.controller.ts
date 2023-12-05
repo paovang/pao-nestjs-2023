@@ -8,10 +8,11 @@ import { TwilioService } from './twilio/twilio.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { LocalAuthGuard } from './auth/local-auth.guard';
-import { Controller, Request, Get, Post, UseGuards, Body } from '@nestjs/common';
+import { Controller, Request, Get, Post, UseGuards, Body, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { PubnubService } from './pubnub/pubnub.service';
 import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 
 @Controller()
@@ -106,6 +107,14 @@ export class AppController {
 
     return this.notificationFirebaseService.sendNotificationFirebase(deviceToken, body)
   }
+
+
+  @Post('upload/file')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
+  }
+
 
 }
 
